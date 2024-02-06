@@ -1,0 +1,27 @@
+.main-container {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6rem;
+}
+
+.image-container {
+  overflow: hidden;
+  border-radius: 25px;
+}
+
+.image-container > img {
+  max-width: 400px;
+}
+
+.text-container {
+  max-width: 400px;
+  padding: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+}

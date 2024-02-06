@@ -1,0 +1,49 @@
+.container {
+  margin: 2rem;
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../assets/homepage.webp);
+  background-position: top center;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: auto;
+  overflow: hidden;
+  border-radius: 25px;
+}
+
+.main-container {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  top: 6rem;
+}
+
+.main-container > h1 {
+  display: block;
+  padding: 2rem;
+  max-width: 30ch;
+}
+
+.main-container > p {
+  display: block;
+  padding: 1rem;
+  max-width: 100ch;
+}
+
+.main-container > a {
+  margin: 2rem;
+}
+
+/* .homepage-heading {
+  position: absolute;
+} */
+
+@media screen and (max-width: 768px) {
+  .container {
+    background-size: auto 100%;
+    background-position: top center;
+  }
+}
