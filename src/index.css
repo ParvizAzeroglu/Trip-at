@@ -86,3 +86,7 @@ ul {
 .navbar-nav-active {
   transform: translateX(0);
 }
+
+.active {
+  color: var(--secondary-color) !important;
+}
