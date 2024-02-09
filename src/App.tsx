@@ -4,6 +4,7 @@ import Pricing from "./pages/Pricing";
 import Product from "./pages/Product";
 import PageNotFound from "./pages/PageNotFound";
 import React from "react";
+import Login from "./pages/Login";
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
   return <div className="app">{children}</div>;
@@ -31,6 +32,14 @@ const router = createBrowserRouter([
     element: (
       <AppLayout>
         <Product />
+      </AppLayout>
+    ),
+  },
+  {
+    path: "/login",
+    element: (
+      <AppLayout>
+        <Login />
       </AppLayout>
     ),
   },

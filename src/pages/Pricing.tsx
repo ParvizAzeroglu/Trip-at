@@ -21,7 +21,7 @@ const Pricing = () => {
             requirements and goals. Explore our cost-effective pricing models
             tailored for your convenience
           </p>
-          <a href="" className="cta">
+          <a href="mailto:azerogluparviz@gmail.com" className="cta">
             Contact me
           </a>
         </div>

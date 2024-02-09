@@ -29,4 +29,8 @@
     flex-direction: column;
     margin: 2rem;
   }
+
+  .image-container > img {
+    max-height: 350px;
+  }
 }
