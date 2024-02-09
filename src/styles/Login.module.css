@@ -11,6 +11,9 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-color: rgba(5, 5, 5, 0.5);
+  padding: 1.5rem;
+  border-radius: 1rem;
 }
 
 .form > input {
@@ -21,6 +24,7 @@
   border-radius: 0.5rem;
   border: none;
   outline: none;
+  opacity: 0.8;
 }
 
 .form > button {

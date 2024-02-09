@@ -5,6 +5,7 @@ import Product from "./pages/Product";
 import PageNotFound from "./pages/PageNotFound";
 import React from "react";
 import Login from "./pages/Login";
+import AppPage from "./pages/AppPage";
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
   return <div className="app">{children}</div>;
@@ -40,6 +41,14 @@ const router = createBrowserRouter([
     element: (
       <AppLayout>
         <Login />
+      </AppLayout>
+    ),
+  },
+  {
+    path: "/app",
+    element: (
+      <AppLayout>
+        <AppPage />
       </AppLayout>
     ),
   },

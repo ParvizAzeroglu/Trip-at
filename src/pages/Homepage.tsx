@@ -20,7 +20,7 @@ const Homepage = () => {
             of. Never forget your wonderful experiences, and show your friends
             how you have wandered the world.
           </p>
-          <a href="" className="cta">
+          <a href="/app" className="cta">
             Start tracking now
           </a>
         </main>
