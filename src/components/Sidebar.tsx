@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "../styles/Sidebar.module.css";
+import { Outlet } from "react-router-dom";
+import AppNav from "./AppNav";
 
 const Sidebar = () => {
   const [active, setActive] = useState<boolean>(false);
@@ -39,7 +41,10 @@ const Sidebar = () => {
       >
         <img src="./src/assets/two-way-arrow.png" alt="" />
       </button>
-      <div className="sidebar-body"></div>
+      <div className="sidebar-body">
+        <AppNav />
+        <Outlet />
+      </div>
     </div>
   );
 };

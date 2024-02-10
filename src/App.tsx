@@ -6,6 +6,7 @@ import PageNotFound from "./pages/PageNotFound";
 import React from "react";
 import Login from "./pages/Login";
 import AppPage from "./pages/AppPage";
+import CityList from "./components/CityList";
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
   return <div className="app">{children}</div>;
@@ -51,6 +52,24 @@ const router = createBrowserRouter([
         <AppPage />
       </AppLayout>
     ),
+    children: [
+      {
+        index: true,
+        element: <CityList />,
+      },
+      {
+        path: "cities",
+        element: <CityList />,
+      },
+      {
+        path: "countries",
+        element: <p>Countries Page</p>,
+      },
+      {
+        path: "form",
+        element: <p>Form</p>,
+      },
+    ],
   },
   {
     path: "*",

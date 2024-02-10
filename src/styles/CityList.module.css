@@ -1,0 +1,19 @@
+.container {
+  padding: 1rem;
+  font-size: 1.25rem;
+}
+
+.container ul {
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+}
+
+.container > ul > li {
+  margin-top: 0.5rem;
+  width: 100%;
+  background-color: var(--background-color);
+  padding: 0.5rem 1rem;
+  border-radius: 0.7rem;
+}

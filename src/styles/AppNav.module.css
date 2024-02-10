@@ -1,0 +1,23 @@
+.nav {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
+.nav ul {
+  display: flex;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav ul li {
+  background-color: var(--background-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+/* .nav a:global(.active) {
+  opacity: 0.7;
+} */
