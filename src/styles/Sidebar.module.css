@@ -1,0 +1,36 @@
+.sidebar {
+  min-height: 100vh;
+  background-color: var(--secondary-bg);
+  max-width: 35vw;
+  position: relative;
+  /* display: fixed; */
+  transform: translateX(-100%);
+  z-index: 100;
+}
+
+.toggle {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  transform: translateX(100%);
+  background-color: var(--secondary-bg);
+  border-radius: 0px 10px 10px 0px;
+  padding: 5px;
+}
+
+.toggle > img {
+  height: 48px;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    max-width: 80vw;
+  }
+}
+
+:global(.sidebar-active) {
+  transform: translateX(0) !important;
+}
+
+.sidebar-body {
+}

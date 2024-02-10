@@ -8,6 +8,7 @@
 
   --text-color: rgba(255, 255, 255, 0.87);
   --background-color: #242424;
+  --secondary-bg: #2c2c2c;
   --primary-color: #a2d2ff;
   --secondary-color: #00bc5f;
 
@@ -24,10 +25,10 @@
   transition: all 0.3s;
 }
 
-body {
-  /* min-height: 100vh; */
-  /* background-color: var(-primary-color) !important; */
-}
+/* body {
+  min-height: 100vh;
+  background-color: var(-primary-color) !important;
+} */
 
 a {
   text-decoration: none;
