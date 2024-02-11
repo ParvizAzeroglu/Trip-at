@@ -5,16 +5,16 @@ import AppNav from "./AppNav";
 
 const Sidebar = () => {
   const [active, setActive] = useState<boolean>(false);
-  const sideButtonRef = useRef(null);
-  const sideContainerRef = useRef(null);
+  const sideButtonRef = useRef<HTMLButtonElement>(null);
+  const sideContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (
         sideContainerRef.current &&
-        !sideContainerRef.current.contains(event.target) &&
+        !sideContainerRef.current.contains(event.target as Node) &&
         sideButtonRef.current &&
-        !sideContainerRef.current.contains(event.target)
+        !sideContainerRef.current.contains(event.target as Node)
       ) {
         setActive(false);
       }

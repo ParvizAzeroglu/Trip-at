@@ -4,16 +4,16 @@ import { NavLink } from "react-router-dom";
 
 const PageNav = () => {
   const [active, setActive] = useState(false);
-  const navContainerRef = useRef(null);
-  const navButtonRef = useRef(null);
+  const navContainerRef = useRef<HTMLUListElement | null>(null);
+  const navButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (
         navContainerRef.current &&
-        !navContainerRef.current.contains(event.target) &&
+        !navContainerRef.current.contains(event.target as Node) &&
         navButtonRef.current &&
-        !navButtonRef.current.contains(event.target)
+        !navButtonRef.current.contains(event.target as Node)
       ) {
         setActive(false);
       }
