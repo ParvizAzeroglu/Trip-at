@@ -10,10 +10,6 @@ import CityList from "./components/CityList";
 
 const URL = "http://localhost:8000";
 
-// const AppLayout = ({ children }: { children: React.ReactNode }) => {
-//   return <div className="app">{children}</div>;
-// };
-
 const App = () => {
   const [cities, setCities] = useState<object>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -41,10 +37,16 @@ const App = () => {
         <Route path="/product" element={<Product />} />
         <Route path="/login" element={<Login />} />
         <Route path="/app" element={<AppPage />}>
-          <Route index element={<CityList />} />
-          <Route path="/cities" element={<CityList />} />
-          <Route path="/countries" element={<p>Countries Page</p>} />
-          <Route path="/form" element={<p>Form Page</p>} />
+          <Route
+            index
+            element={<CityList cities={cities} isLoading={isLoading} />}
+          />
+          <Route
+            path="cities"
+            element={<CityList cities={cities} isLoading={isLoading} />}
+          />
+          <Route path="countries" element={<p>Countries Page</p>} />
+          <Route path="form" element={<p>Form Page</p>} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>

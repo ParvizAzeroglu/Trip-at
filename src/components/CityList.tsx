@@ -1,5 +1,12 @@
+import React from "react";
 import styles from "../styles/CityList.module.css";
-const CityList = () => {
+
+interface CityListProps {
+  cities: object;
+  isLoading: boolean;
+}
+
+const CityList: React.FC<CityListProps> = ({ cities, isLoading }) => {
   return (
     <div className={styles.container}>
       <ul className={styles.cityList}>
