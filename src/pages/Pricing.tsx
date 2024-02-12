@@ -1,5 +1,3 @@
-// import React from 'react'
-
 import PageNav from "../components/PageNav";
 import styles from "../styles/Pricing.module.css";
 

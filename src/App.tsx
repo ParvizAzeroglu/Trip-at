@@ -11,7 +11,7 @@ import CityList from "./components/CityList";
 const URL = "http://localhost:8000";
 
 const App = () => {
-  const [cities, setCities] = useState<object>({});
+  const [cities, setCities] = useState([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {

@@ -1,21 +1,39 @@
 import React from "react";
 import styles from "../styles/CityList.module.css";
+import Spinner from "./Spinner";
+import CityItem from "./CityItem";
 
 interface CityListProps {
-  cities: object;
+  cities: City[];
   isLoading: boolean;
 }
 
-const CityList: React.FC<CityListProps> = ({ cities, isLoading }) => {
-  return (
-    <div className={styles.container}>
-      <ul className={styles.cityList}>
-        <li>Lorm</li>
-        <li>Lorm</li>
-        <li>Lorm</li>
-      </ul>
-    </div>
-  );
-};
+interface City {
+  cityName: string;
+  country: string;
+  emoji: string;
+  date: string;
+  notes: string;
+  position: {
+    lat: number;
+    lng: number;
+  };
+  id: number;
+}
 
+const CityList: React.FC<CityListProps> = ({ cities, isLoading }) => {
+  if (isLoading) {
+    return <Spinner />;
+  } else {
+    return (
+      <div className={styles.container}>
+        <ul className={styles.cityList}>
+          {cities?.map((city: City) => {
+            return <CityItem city={city} key={city.id} />;
+          })}
+        </ul>
+      </div>
+    );
+  }
+};
 export default CityList;

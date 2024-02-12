@@ -1,9 +1,6 @@
-// import React from "react";
 import styles from "../styles/Product.module.css";
 
 import PageNav from "../components/PageNav";
-
-// type Props = {}
 
 const Product = () => {
   return (
