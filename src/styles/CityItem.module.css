@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.emoji {
+  justify-self: flex-end;
+  line-height: 1;
+}
+
+.city-name {
+  margin-right: auto;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+/* .time {
+} */
+
+.deleteBtn {
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border: none;
+  height: 1.75rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.deleteBtn:hover,
+.deleteBtn:active {
+  opacity: 0.7;
+}

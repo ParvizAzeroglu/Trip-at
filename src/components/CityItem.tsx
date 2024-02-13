@@ -18,7 +18,14 @@ interface CityItemProps {
 // React.FC<CityItemProps>
 
 const CityItem = ({ city }: CityItemProps) => {
-  return <li className={styles.container}>{city.id}</li>;
+  return (
+    <li className={styles.container}>
+      <span className={styles.emoji}>{city.emoji}</span>
+      <h4 className={styles["city-name"]}>{city.cityName}</h4>
+      <p className={styles.time}>{city.date}</p>
+      <button className={styles.deleteBtn}>&times;</button>
+    </li>
+  );
 };
 
 export default CityItem;
