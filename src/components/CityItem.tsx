@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "../styles/CityItem.module.css";
 
 interface CityItemProps {
@@ -18,12 +19,18 @@ interface CityItemProps {
 // React.FC<CityItemProps>
 
 const CityItem = ({ city }: CityItemProps) => {
+  console.log(city.position);
   return (
     <li className={styles.container}>
-      <span className={styles.emoji}>{city.emoji}</span>
-      <h4 className={styles["city-name"]}>{city.cityName}</h4>
-      <p className={styles.time}>{city.date}</p>
-      <button className={styles.deleteBtn}>&times;</button>
+      <Link
+        to={`${city.id}?lat=${city.position.lat}&lng=${city.position.lng}`}
+        className={styles.link}
+      >
+        <span className={styles.emoji}>{city.emoji}</span>
+        <h4 className={styles["city-name"]}>{city.cityName}</h4>
+        <p className={styles.time}>{city.date}</p>
+        <button className={styles.deleteBtn}>&times;</button>
+      </Link>
     </li>
   );
 };

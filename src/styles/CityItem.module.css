@@ -1,7 +1,11 @@
-.container {
+/* .container {
+} */
+
+.link {
   display: flex;
   align-items: center;
   gap: 1.6rem;
+  color: white;
 }
 
 .emoji {
