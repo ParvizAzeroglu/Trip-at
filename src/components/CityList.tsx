@@ -24,16 +24,17 @@ interface City {
 const CityList: React.FC<CityListProps> = ({ cities, isLoading }) => {
   if (isLoading) {
     return <Spinner />;
-  } else {
-    return (
-      <div className={styles.container}>
-        <ul className={styles.cityList}>
-          {cities?.map((city: City) => {
-            return <CityItem city={city} key={city.id} />;
-          })}
-        </ul>
-      </div>
-    );
   }
+  // Add Message.tsx
+  if (!cities.length) return <p>there is no data here</p>;
+  return (
+    <div className={styles.container}>
+      <ul className={styles.cityList}>
+        {cities?.map((city: City) => {
+          return <CityItem city={city} key={city.id} />;
+        })}
+      </ul>
+    </div>
+  );
 };
 export default CityList;

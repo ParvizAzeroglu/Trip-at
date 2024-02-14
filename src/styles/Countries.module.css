@@ -1,0 +1,31 @@
+.container {
+  padding: 1rem;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 15px;
+}
+
+.list-item {
+  min-width: 200px;
+  margin: auto;
+  background-color: var(--background-color);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 1rem;
+  padding: 1rem 0rem;
+  cursor: pointer;
+}
+
+.list-item > span {
+  font-size: 1.5rem;
+}
+
+.list-item > p {
+  opacity: 0.75;
+}
