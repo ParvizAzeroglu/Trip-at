@@ -1,4 +1,11 @@
-import { BrowserRouter, Form, Navigate, Route, Routes } from "react-router-dom";
+import {
+  Form,
+  Navigate,
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Pricing from "./pages/Pricing";
 import Product from "./pages/Product";
@@ -31,9 +38,9 @@ const App = () => {
     }
     fetchCities();
   }, []);
-  return (
-    <BrowserRouter>
-      <Routes>
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
         <Route index element={<Homepage />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/product" element={<Product />} />
@@ -52,9 +59,11 @@ const App = () => {
           <Route path="form" element={<Form />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
-      </Routes>
-    </BrowserRouter>
+      </>
+    )
   );
+
+  return <RouterProvider router={router} />;
 };
 
 export default App;

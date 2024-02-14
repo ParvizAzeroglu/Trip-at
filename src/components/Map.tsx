@@ -11,7 +11,7 @@ const Map = () => {
     setSearchParams({ lat: `${23424}`, lng: `${134}` });
   };
   return (
-    <div className={styles.container} onClick={() => navigate("/app/form")}>
+    <div className={styles.container} onClick={() => navigate("form")}>
       <h1>Map</h1>
       <h1>
         Position: {lat}, {lng}
