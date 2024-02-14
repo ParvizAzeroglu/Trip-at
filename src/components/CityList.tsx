@@ -1,27 +1,12 @@
-import React from "react";
 import styles from "../styles/CityList.module.css";
 import Spinner from "./Spinner";
 import CityItem from "./CityItem";
+import { useCities } from "../contexts/CitiesContext";
+import { City } from "../interfaces/City";
 
-interface CityListProps {
-  cities: City[];
-  isLoading: boolean;
-}
+const CityList = () => {
+  const { cities, isLoading } = useCities();
 
-interface City {
-  cityName: string;
-  country: string;
-  emoji: string;
-  date: string;
-  notes: string;
-  position: {
-    lat: number;
-    lng: number;
-  };
-  id: number;
-}
-
-const CityList: React.FC<CityListProps> = ({ cities, isLoading }) => {
   if (isLoading) {
     return <Spinner />;
   }

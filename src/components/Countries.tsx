@@ -1,26 +1,12 @@
 import React from "react";
 import styles from "../styles/Countries.module.css";
 import Spinner from "./Spinner";
+import { useCities } from "../contexts/CitiesContext";
+import { City } from "../interfaces/City";
 
-interface CountriesProps {
-  cities: City[];
-  isLoading: boolean;
-}
+const Countries: React.FC = () => {
+  const { cities, isLoading } = useCities();
 
-interface City {
-  cityName: string;
-  country: string;
-  emoji: string;
-  date: string;
-  notes: string;
-  position: {
-    lat: number;
-    lng: number;
-  };
-  id: number;
-}
-
-const Countries: React.FC<CountriesProps> = ({ cities, isLoading }) => {
   const countries = cities.reduce((acc: City[], cur) => {
     if (!acc.map((element) => element.country).includes(cur.country)) {
       return [...acc, cur];
