@@ -19,7 +19,7 @@ interface CityItemProps {
 // React.FC<CityItemProps>
 
 const CityItem = ({ city }: CityItemProps) => {
-  console.log(city.position);
+  // console.log(city.position);
   return (
     <li className={styles.container}>
       <Link

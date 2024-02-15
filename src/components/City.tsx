@@ -13,8 +13,6 @@ const City = () => {
     }
   }, [id]);
 
-  console.log(currentCity);
-
   return (
     <div className={styles.container}>
       <p>{currentCity.cityName}</p>
