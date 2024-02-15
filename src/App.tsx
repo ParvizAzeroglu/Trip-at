@@ -1,5 +1,4 @@
 import {
-  Form,
   Navigate,
   Route,
   RouterProvider,
@@ -16,6 +15,7 @@ import CityList from "./components/CityList";
 import Countries from "./components/Countries";
 import City from "./components/City";
 import { CitiesProvider } from "./contexts/CitiesContext";
+import FormPage from "./components/FormPage";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -29,8 +29,8 @@ const App = () => {
           <Route index element={<Navigate replace to="cities" />} />
           <Route path="cities" element={<CityList />} />
           <Route path="cities/:id" element={<City />} />
+          <Route path="form" element={<FormPage />} />
           <Route path="countries" element={<Countries />} />
-          <Route path="form" element={<Form />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </>

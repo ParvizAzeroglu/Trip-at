@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import styles from "../styles/Form.module.css";
+import styles from "../styles/FormPage.module.css";
 
-const Form = () => {
+const FormPage = () => {
   const navigate = useNavigate();
   return (
-    <form className={styles.container}>
-      <h1>Form</h1>
+    <div className={styles.container}>
+      <h1>FormPage</h1>
       <button
         onClick={(e) => {
           e.preventDefault();
@@ -14,8 +14,12 @@ const Form = () => {
       >
         Back
       </button>
-    </form>
+    </div>
   );
 };
 
-export default Form;
+// function FormPage() {
+//   return <div>Hello world</div>;
+// }
+
+export default FormPage;
