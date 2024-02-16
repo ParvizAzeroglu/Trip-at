@@ -9,9 +9,12 @@ interface ContextValueProps {
   isLoading: boolean;
   currentCity: Partial<City>;
   getCity: (id: string) => Promise<void>;
+  active: boolean;
+  setActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function CitiesProvider({ children }: { children: React.ReactNode }) {
+  const [active, setActive] = useState<boolean>(false);
   const [cities, setCities] = useState([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [currentCity, setCurrentCity] = useState({});
@@ -39,7 +42,7 @@ function CitiesProvider({ children }: { children: React.ReactNode }) {
       const data = await res.json();
       setCurrentCity(data);
     } catch {
-      alert("Error fetching data");
+      console.log("%c Error fetching data", "color: red;");
     } finally {
       setIsLoading(false);
     }
@@ -52,6 +55,8 @@ function CitiesProvider({ children }: { children: React.ReactNode }) {
         isLoading,
         currentCity,
         getCity,
+        active,
+        setActive,
       }}
     >
       {children}

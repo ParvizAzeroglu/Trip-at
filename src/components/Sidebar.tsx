@@ -1,15 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import styles from "../styles/Sidebar.module.css";
 import { Outlet } from "react-router-dom";
 import AppNav from "./AppNav";
+import { useCities } from "../contexts/CitiesContext";
 
 const Sidebar = () => {
-  const [active, setActive] = useState<boolean>(false);
   const sideButtonRef = useRef<HTMLButtonElement>(null);
   const sideContainerRef = useRef<HTMLDivElement>(null);
+  const { active, setActive } = useCities();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      if (active == true) return;
       if (
         sideContainerRef.current &&
         !sideContainerRef.current.contains(event.target as Node) &&
@@ -24,7 +26,7 @@ const Sidebar = () => {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, []);
+  }, [active]);
 
   const handleClick = () => {
     setActive((prev) => !prev);

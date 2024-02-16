@@ -51,12 +51,13 @@ const DetectPosition = ({
   setPosition: React.Dispatch<React.SetStateAction<number[]>>;
 }) => {
   const navigate = useNavigate();
-
+  const { setActive } = useCities();
   const map = useMapEvents({
     click(e) {
+      // console.log(e);
       setPosition(e.latlng);
+      setActive(() => true);
       navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
-      // console.log(e.latlng);
       map.flyTo(e.latlng, map.getZoom());
     },
   });

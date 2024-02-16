@@ -9,6 +9,7 @@
 .container > label {
   display: block;
   font-weight: 700;
+  font-size: 1.3rem;
 }
 
 .container > label:not(:first-child) {
@@ -27,4 +28,12 @@
   outline: none;
   opacity: 0.8;
   resize: none;
+  font-size: 1.1rem;
+}
+
+.action {
+  margin: 1rem 0rem 0.5rem 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

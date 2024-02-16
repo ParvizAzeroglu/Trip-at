@@ -114,3 +114,10 @@ ul {
   display: block;
   height: 90px;
 }
+
+.button {
+  background-color: #00bc5f;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  letter-spacing: 2px;
+}
