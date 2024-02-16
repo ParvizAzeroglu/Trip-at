@@ -18,7 +18,12 @@ const FormPage = () => {
     const fetchData = async () => {
       if (mapLat !== null && mapLng !== null) {
         const reverseGeolocation = await ReverseGeolocation(mapLat, mapLng);
-        setCity([reverseGeolocation.city, reverseGeolocation.countryCode]);
+        console.log(reverseGeolocation);
+        setCity([
+          reverseGeolocation.city,
+          reverseGeolocation.countryCode,
+          reverseGeolocation.countryName,
+        ]);
       }
     };
 
@@ -36,7 +41,6 @@ const FormPage = () => {
 
   const handleSaveEvent: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
-    // console.log(cityNameRef.current?.value);
     navigate("/app/cities");
   };
 
