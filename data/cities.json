@@ -29,36 +29,12 @@
       "country": "United States",
       "emoji": "🇺🇸",
       "date": "2024-02-10",
-      "notes": "The city that never sleeps",
+      "notes": "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet",
       "position": {
         "lat": 40.7128,
         "lng": -74.006
       },
       "id": 5321
-    },
-    {
-      "cityName": "Orlando",
-      "country": "United States",
-      "emoji": "🇺🇸",
-      "date": "2024-02-10",
-      "notes": "The city that never sleeps",
-      "position": {
-        "lat": 40.7128,
-        "lng": -74.006
-      },
-      "id": 1424
-    },
-    {
-      "cityName": "Nagoya",
-      "country": "Japan",
-      "emoji": "🇯🇵",
-      "date": "2024-02-10",
-      "notes": "Amazing city with a rich culture",
-      "position": {
-        "lat": 35.6895,
-        "lng": 139.6917
-      },
-      "id": 34234
     }
   ]
 }

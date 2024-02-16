@@ -1,33 +1,70 @@
-// import { useNavigate, useSearchParams } from "react-router-dom";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  useMapEvents,
+} from "react-leaflet";
 import styles from "../styles/Map.module.css";
-import { LatLngTuple } from "leaflet";
+import { useCities } from "../contexts/CitiesContext";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Map = () => {
-  // const navigate = useNavigate();
-  const position: LatLngTuple = [51.505, -0.09];
-
-  // const [searchParams, setSearchParams] = useSearchParams();
+  // const position: LatLngTuple = [51.505, -0.09];
+  const [position, setPosition] = useState<number[]>([51.505, -0.09]);
+  const { cities } = useCities();
 
   return (
     <div className={styles.container}>
       <MapContainer
-        center={position}
-        zoom={13}
-        scrollWheelZoom={false}
+        center={[position[0], position[1]]}
+        zoom={7}
+        scrollWheelZoom={true}
         className={styles.container}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
         />
-        <Marker position={position}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
+        {cities?.map((city) => {
+          return (
+            <Marker
+              position={[city.position.lat, city.position.lng]}
+              key={city.id}
+            >
+              <Popup>{city.cityName}</Popup>
+            </Marker>
+          );
+        })}
+        <DetectPosition position={position} setPosition={setPosition} />
       </MapContainer>
     </div>
+  );
+};
+
+const DetectPosition = ({
+  position,
+  setPosition,
+}: {
+  position: number[];
+  setPosition: React.Dispatch<React.SetStateAction<number[]>>;
+}) => {
+  const navigate = useNavigate();
+
+  const map = useMapEvents({
+    click(e) {
+      setPosition(e.latlng);
+      navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
+      // console.log(e.latlng);
+      map.flyTo(e.latlng, map.getZoom());
+    },
+  });
+
+  return position === null ? null : (
+    <Marker position={position}>
+      <Popup>You Selected this location</Popup>
+    </Marker>
   );
 };
 

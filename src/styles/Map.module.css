@@ -4,4 +4,24 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
+}
+
+:global(.leaflet-popup .leaflet-popup-content-wrapper) {
+  background-color: var(--background-color);
+  /* color: var(--secondary-color); */
+  color: var(--text-color);
+  border-radius: 20px;
+  padding-right: 0.5rem;
+}
+
+:global(.leaflet-popup .leaflet-popup-close-button) {
+  margin: 4px 4px 0px 0px;
+}
+
+:global(.leaflet-popup .leaflet-popup-content) {
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
