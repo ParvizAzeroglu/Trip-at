@@ -2,7 +2,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import styles from "../styles/FormPage.module.css";
 import { useCities } from "../contexts/CitiesContext";
 import { MouseEventHandler, useEffect, useRef, useState } from "react";
-import ReverseGeolocation from "../utilities/ReverseGeolocation";
+import useReverseGeolocation from "../hook/useReverseGeolocation";
 const FormPage = () => {
   const [searchParams] = useSearchParams();
   const mapLat = searchParams.get("lat");
@@ -14,21 +14,8 @@ const FormPage = () => {
   const textareaFormRef = useRef<HTMLTextAreaElement>(null);
   const [city, setCity] = useState<string[] | null>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (mapLat !== null && mapLng !== null) {
-        const reverseGeolocation = await ReverseGeolocation(mapLat, mapLng);
-        console.log(reverseGeolocation);
-        setCity([
-          reverseGeolocation.city,
-          reverseGeolocation.countryCode,
-          reverseGeolocation.countryName,
-        ]);
-      }
-    };
-
-    fetchData();
-  }, [mapLat, mapLng]);
+  const { data } = useReverseGeolocation(mapLat, mapLng);
+  console.log(data);
 
   useEffect(() => {
     if (timeFormRef.current) {
@@ -53,13 +40,7 @@ const FormPage = () => {
   return (
     <form className={styles.container}>
       <label htmlFor="cityNameForm">City name</label>
-      <input
-        type="text"
-        id="cityName"
-        maxLength={50}
-        ref={cityNameRef}
-        value={city![0]}
-      />
+      <input type="text" id="cityName" maxLength={50} ref={cityNameRef} />
       <label htmlFor="" id="timeForm">
         When did you go ?
       </label>
