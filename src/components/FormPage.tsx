@@ -1,21 +1,21 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import styles from "../styles/FormPage.module.css";
 import { useCities } from "../contexts/CitiesContext";
-import { MouseEventHandler, useEffect, useRef, useState } from "react";
+import { MouseEventHandler, useEffect, useRef } from "react";
 import useReverseGeolocation from "../hook/useReverseGeolocation";
+import { getRandomNumber } from "../utilities/getRandomNumber";
 const FormPage = () => {
   const [searchParams] = useSearchParams();
   const mapLat = searchParams.get("lat");
   const mapLng = searchParams.get("lng");
   const navigate = useNavigate();
-  const { setActive } = useCities();
+  // Refs
   const cityNameRef = useRef<HTMLInputElement>(null);
   const timeFormRef = useRef<HTMLInputElement>(null);
   const textareaFormRef = useRef<HTMLTextAreaElement>(null);
-  const [city, setCity] = useState<string[] | null>(null);
-
+  // Custom
+  const { setActive } = useCities();
   const { data } = useReverseGeolocation(mapLat, mapLng);
-  console.log(data);
 
   useEffect(() => {
     if (timeFormRef.current) {
@@ -28,6 +28,22 @@ const FormPage = () => {
 
   const handleSaveEvent: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
+    const formData = {
+      cityName: cityNameRef.current?.value,
+      date: timeFormRef.current?.value,
+      notes: textareaFormRef.current?.value,
+    };
+    const MergedData = {
+      ...formData,
+      country: data?.countryName,
+      emoji: data?.countryCode,
+      position: {
+        lat: data?.latitude,
+        lng: data?.longitude,
+      },
+      id: getRandomNumber(),
+    };
+    console.log(MergedData);
     navigate("/app/cities");
   };
 
@@ -40,7 +56,13 @@ const FormPage = () => {
   return (
     <form className={styles.container}>
       <label htmlFor="cityNameForm">City name</label>
-      <input type="text" id="cityName" maxLength={50} ref={cityNameRef} />
+      <input
+        type="text"
+        id="cityName"
+        maxLength={50}
+        ref={cityNameRef}
+        value={data?.city}
+      />
       <label htmlFor="" id="timeForm">
         When did you go ?
       </label>

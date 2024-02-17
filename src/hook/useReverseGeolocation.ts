@@ -3,8 +3,17 @@ import { useEffect, useState } from "react";
 const URL = "https://api.bigdatacloud.net/data/reverse-geocode";
 const key = import.meta.env.VITE_BIGDATACLOUD_API_KEY;
 
+interface DataProps {
+  city: string;
+  continent: string;
+  countryCode: string;
+  countryName: string;
+  latitude: number;
+  longitude: number;
+}
+
 const useReverseGeolocation = (lnt: string | null, lng: string | null) => {
-  const [data, setData] = useState();
+  const [data, setData] = useState<DataProps | null>(null);
   useEffect(() => {
     async function getData() {
       try {
