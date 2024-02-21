@@ -31,7 +31,7 @@ const PageNav = () => {
   return (
     <nav className={styles.navbar}>
       <NavLink to="/" className={styles.brand}>
-        <img src="./src/assets/brand.png" alt="Logo img" />
+        <img src="src\assets\brand.png" alt="Logo img" />
         <h2 className={`heading ${styles["brand-name"]}`}>Trip at</h2>
       </NavLink>
       <button

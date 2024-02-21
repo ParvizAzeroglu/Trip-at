@@ -9,7 +9,7 @@ const Pricing = () => {
 
       <main className={styles.container}>
         <div className={styles["image-container"]}>
-          <img src="./src/assets/pricing.webp" alt="Pricing webp image" />
+          <img src="src\assets\pricing.webp" alt="Pricing webp image" />
         </div>
         <div className={styles["text-container"]}>
           <h1 className="heading">

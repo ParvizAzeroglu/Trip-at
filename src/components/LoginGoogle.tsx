@@ -3,6 +3,7 @@ import { auth } from "../firebase/firebase-config";
 import toast from "react-hot-toast";
 import Cookies from "universal-cookie";
 import styles from "../styles/LoginGoogle.module.css";
+import googleImg from "../assets/google.webp";
 
 const cookies = new Cookies();
 
@@ -28,7 +29,7 @@ const LoginGoogle = () => {
   return (
     <div className={styles.container}>
       <button onClick={handleGoogle} className={styles.google}>
-        <img src="src\assets\google.webp" alt="" />
+        <img src={googleImg} alt="Login with google" />
       </button>
     </div>
   );
