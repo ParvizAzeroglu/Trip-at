@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "../styles/PageNav.module.css";
 import { NavLink } from "react-router-dom";
+import logoImg from "../assets/brand.png";
+import hambugerImg from "../assets/hamburger.png";
 
 const PageNav = () => {
   const [active, setActive] = useState(false);
@@ -31,7 +33,7 @@ const PageNav = () => {
   return (
     <nav className={styles.navbar}>
       <NavLink to="/" className={styles.brand}>
-        <img src="src\assets\brand.png" alt="Logo img" />
+        <img src={logoImg} alt="Logo img" />
         <h2 className={`heading ${styles["brand-name"]}`}>Trip at</h2>
       </NavLink>
       <button
@@ -39,7 +41,7 @@ const PageNav = () => {
         className={styles["navbar-hamburger"]}
         onClick={handleClick}
       >
-        <img src="./src/assets/hamburger.png" alt="Hamburger Menu Png" />
+        <img src={hambugerImg} alt="Hamburger Menu Png" />
       </button>
       <ul
         ref={navContainerRef}

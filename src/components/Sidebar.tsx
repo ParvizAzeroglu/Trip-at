@@ -3,6 +3,7 @@ import styles from "../styles/Sidebar.module.css";
 import { Outlet } from "react-router-dom";
 import AppNav from "./AppNav";
 import { useCities } from "../contexts/CitiesContext";
+import iconPng from "../assets/two-way-arrow.png";
 
 const Sidebar = () => {
   const sideButtonRef = useRef<HTMLButtonElement>(null);
@@ -41,7 +42,7 @@ const Sidebar = () => {
         onClick={handleClick}
         ref={sideButtonRef}
       >
-        <img src="./src/assets/two-way-arrow.png" alt="" />
+        <img src={iconPng} alt="" />
       </button>
       <div className="sidebar-body">
         <AppNav />

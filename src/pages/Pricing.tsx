@@ -1,5 +1,6 @@
 import PageNav from "../components/PageNav";
 import styles from "../styles/Pricing.module.css";
+import pricingImg from "../assets/pricing.webp";
 
 const Pricing = () => {
   return (
@@ -9,7 +10,7 @@ const Pricing = () => {
 
       <main className={styles.container}>
         <div className={styles["image-container"]}>
-          <img src="src\assets\pricing.webp" alt="Pricing webp image" />
+          <img src={pricingImg} alt="Pricing webp image" />
         </div>
         <div className={styles["text-container"]}>
           <h1 className="heading">

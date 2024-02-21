@@ -1,5 +1,5 @@
 import styles from "../styles/Product.module.css";
-
+import aboutImg from "../assets/about.webp";
 import PageNav from "../components/PageNav";
 
 const Product = () => {
@@ -10,7 +10,7 @@ const Product = () => {
 
       <main className={styles["main-container"]}>
         <div className={styles["image-container"]}>
-          <img src="./src/assets/about.webp" alt="" />
+          <img src={aboutImg} alt="" />
         </div>
         <div className={styles["text-container"]}>
           <h2 className="heading">About Trip At</h2>
