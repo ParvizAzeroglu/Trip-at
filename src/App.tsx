@@ -25,13 +25,13 @@ const App = () => {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/product" element={<Product />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/app" element={<AppPage />}>
-          {/* <Route index element={<Navigate replace to="cities" />} />
+        <Route path="/app" element={<AppPage />} />
+        {/* <Route index element={<Navigate replace to="cities" />} />
           <Route path="cities" element={<CityList />} />
           <Route path="cities/:id" element={<City />} />
           <Route path="form" element={<FormPage />} />
           <Route path="countries" element={<Countries />} /> */}
-        </Route>
+        {/* </Route> */}
         <Route path="*" element={<PageNotFound />} />
       </>
     )
