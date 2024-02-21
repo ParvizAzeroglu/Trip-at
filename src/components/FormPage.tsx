@@ -61,7 +61,7 @@ const FormPage = () => {
         id="cityName"
         maxLength={50}
         ref={cityNameRef}
-        value={data?.city}
+        value={data?.city || ""}
       />
       <label htmlFor="" id="timeForm">
         When did you go ?

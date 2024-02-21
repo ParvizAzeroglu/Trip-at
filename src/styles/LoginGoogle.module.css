@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.google {
+  height: 260px;
+  width: 260px;
+  margin: 2rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  position: relative;
+  background: linear-gradient(0deg, #000, #272727);
+  cursor: pointer;
+}
+
+.google::after,
+.google::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  background: linear-gradient(
+    45deg,
+    #fb0094,
+    #0000ff,
+    #00ff00,
+    #ffff00,
+    #ff0000,
+    #fb0094,
+    #0000ff,
+    #00ff00,
+    #ffff00,
+    #ff0000
+  );
+  background-size: 400%;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  z-index: -1;
+  animation: steam 20s linear infinite;
+  border-radius: 1rem;
+}
+
+.google > img {
+  height: 50%;
+  opacity: 0.8;
+}
+
+.google::after {
+  filter: blur(50px);
+}
+
+@keyframes steam {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}

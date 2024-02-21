@@ -1,13 +1,14 @@
 // import React from "react";
-import Map from "../components/Map";
-import Sidebar from "../components/Sidebar";
+// import Map from "../components/Map";
+// import Sidebar from "../components/Sidebar";
 import styles from "../styles/AppPage.module.css";
 
 const AppPage = () => {
   return (
     <div className={styles.container}>
-      <Sidebar />
-      <Map />
+      <h1 style={{ textAlign: "center" }}>Hi User 👋</h1>
+      {/* <Sidebar />
+      <Map /> */}
     </div>
   );
 };

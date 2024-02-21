@@ -102,17 +102,17 @@ ul {
 
 .space-30 {
   display: block;
-  height: 30px;
+  height: 1.5rem;
 }
 
 .space-60 {
   display: block;
-  height: 60px;
+  height: 3rem;
 }
 
 .space-90 {
   display: block;
-  height: 90px;
+  height: 5rem;
 }
 
 .button {

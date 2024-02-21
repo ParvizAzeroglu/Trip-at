@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 const Map = () => {
   // const position: LatLngTuple = [51.505, -0.09];
-  const [position, setPosition] = useState<number[]>([51.505, -0.09]);
+  const [position, setPosition] = useState([51.505, -0.09]);
   const { cities } = useCities();
 
   return (
@@ -55,7 +55,7 @@ const DetectPosition = ({
   const map = useMapEvents({
     click(e) {
       // console.log(e);
-      setPosition(e.latlng);
+      setPosition([e.latlng.lat, e.latlng.lng]);
       setActive(() => true);
       navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
       map.flyTo(e.latlng, map.getZoom());
@@ -63,7 +63,7 @@ const DetectPosition = ({
   });
 
   return position === null ? null : (
-    <Marker position={position}>
+    <Marker position={[position[0], position[1]]}>
       <Popup>You Selected this location</Popup>
     </Marker>
   );

@@ -19,6 +19,8 @@ function CitiesProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [currentCity, setCurrentCity] = useState({});
 
+  // Delete here
+
   useEffect(() => {
     async function fetchCities() {
       try {
@@ -34,6 +36,8 @@ function CitiesProvider({ children }: { children: React.ReactNode }) {
     }
     fetchCities();
   }, []);
+
+  // Delete here
 
   async function getCity(id: string) {
     try {

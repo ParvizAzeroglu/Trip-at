@@ -1,28 +1,16 @@
+import LoginGoogle from "../components/LoginGoogle";
 import PageNav from "../components/PageNav";
-import styles from "../styles/Login.module.css";
+import { Toaster } from "react-hot-toast";
 
 const Login = () => {
   return (
     <>
+      <Toaster />
       <PageNav />
       <span className="space-90"></span>
-      <div className={styles.container}>
-        <form action="" className={`shadow ${styles.form}`}>
-          <input
-            type="text"
-            placeholder="Gmail"
-            className="shadow"
-            maxLength={30}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className="shadow"
-            maxLength={30}
-          />
-          <button className="cta shadow">Login</button>
-        </form>
-      </div>
+      <span className="space-90"></span>
+      <span className="space-60"></span>
+      <LoginGoogle />
     </>
   );
 };
