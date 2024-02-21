@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { City } from "../interfaces/City";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { auth, db } from "../firebase/firebase-config";
 
-const URL = "http://localhost:8000";
 const CitiesContext = createContext<ContextValueProps | undefined>(undefined);
 
 interface ContextValueProps {
@@ -15,25 +16,34 @@ interface ContextValueProps {
 
 function CitiesProvider({ children }: { children: React.ReactNode }) {
   const [active, setActive] = useState<boolean>(false);
-  const [cities, setCities] = useState([]);
+  const [cities, setCities] = useState<City[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [currentCity, setCurrentCity] = useState({});
+  const citiesRef = collection(db, "users");
 
   // Delete here
 
   useEffect(() => {
-    async function fetchCities() {
+    const fetchCities = async () => {
       try {
-        setIsLoading(true);
-        const res = await fetch(`${URL}/cities`);
-        const data = await res.json();
-        setCities(data);
-      } catch {
-        alert("Error fetching data");
-      } finally {
-        setIsLoading(false);
+        const usernameToMatch = auth.currentUser?.displayName;
+
+        if (!usernameToMatch) {
+          console.log("Kullanıcı adı bilgisi bulunamadı.");
+          return;
+        }
+
+        const querySnapshot = await getDocs(
+          query(citiesRef, where("user", "==", usernameToMatch))
+        );
+
+        const citiesData = querySnapshot.docs.map((doc) => doc.data());
+        setCities((prev) => [...prev, ...citiesData]);
+      } catch (error) {
+        console.error("Hata oluştu:", error);
       }
-    }
+    };
+
     fetchCities();
   }, []);
 
@@ -42,11 +52,29 @@ function CitiesProvider({ children }: { children: React.ReactNode }) {
   async function getCity(id: string) {
     try {
       setIsLoading(true);
-      const res = await fetch(`${URL}/cities/${id}`);
-      const data = await res.json();
-      setCurrentCity(data);
-    } catch {
-      console.log("%c Error fetching data", "color: red;");
+      const usernameToMatch = auth.currentUser?.displayName;
+
+      if (!usernameToMatch) {
+        console.log("Kullanıcı adı bilgisi bulunamadı.");
+        return;
+      }
+
+      const querySnapshot = await getDocs(
+        query(
+          citiesRef,
+          where("user", "==", usernameToMatch),
+          where("id", "==", Number(id))
+        )
+      );
+
+      if (querySnapshot.size > 0) {
+        const documentData = querySnapshot.docs[0].data();
+        console.log("Eşleşen Belge:", documentData);
+      } else {
+        console.log("Eşleşen belge bulunamadı.");
+      }
+    } catch (err) {
+      console.log("error", err);
     } finally {
       setIsLoading(false);
     }

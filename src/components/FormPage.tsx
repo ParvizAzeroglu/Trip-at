@@ -4,6 +4,23 @@ import { useCities } from "../contexts/CitiesContext";
 import { MouseEventHandler, useEffect, useRef } from "react";
 import useReverseGeolocation from "../hook/useReverseGeolocation";
 import { getRandomNumber } from "../utilities/getRandomNumber";
+import { db } from "../firebase/firebase-config";
+import { addDoc, collection } from "firebase/firestore";
+import { auth } from "../firebase/firebase-config";
+import toast from "react-hot-toast";
+
+const testDb = async (data) => {
+  try {
+    await addDoc(collection(db, "users"), {
+      user: auth.currentUser?.displayName || "User",
+      data,
+    });
+    toast.success("data successfully added");
+  } catch (err) {
+    console.log("failed to add data ", err);
+  }
+};
+
 const FormPage = () => {
   const [searchParams] = useSearchParams();
   const mapLat = searchParams.get("lat");
@@ -43,6 +60,7 @@ const FormPage = () => {
       },
       id: getRandomNumber(),
     };
+    testDb(MergedData);
     console.log(MergedData);
     navigate("/app/cities");
   };
