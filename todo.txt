@@ -1,6 +1,5 @@
 add Message.tsx
 Merge PageNav and Offcanvas components
-add .env
+clean code
 
-
-asfasdfk
+add try, catch

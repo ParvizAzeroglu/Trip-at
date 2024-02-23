@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 const testDb = async (data) => {
   try {
     await addDoc(collection(db, "users"), {
-      user: auth.currentUser?.displayName || "User",
+      user: auth.currentUser?.uid,
       data,
     });
     toast.success("data successfully added");

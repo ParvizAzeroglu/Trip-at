@@ -12,7 +12,7 @@ const LoginGoogle = () => {
     const provider = new GoogleAuthProvider();
     return signInWithPopup(auth, provider)
       .then((result) => {
-        const user = result.user.refreshToken;
+        const user = result.user.uid;
         cookies.set("auth-token", user);
         toast.success(
           "Registration Successful. In 3 seconds, you will be redirected to the app!"

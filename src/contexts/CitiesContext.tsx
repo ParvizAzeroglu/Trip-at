@@ -1,7 +1,17 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { City } from "../interfaces/City";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import { auth, db } from "../firebase/firebase-config";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 const CitiesContext = createContext<ContextValueProps | undefined>(undefined);
 
@@ -20,34 +30,22 @@ function CitiesProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [currentCity, setCurrentCity] = useState({});
   const citiesRef = collection(db, "users");
-
+  const user = cookies.get("auth-token");
   // Delete here
 
   useEffect(() => {
-    const fetchCities = async () => {
-      try {
-        const usernameToMatch = auth.currentUser?.displayName;
-
-        if (!usernameToMatch) {
-          console.log("Kullanıcı adı bilgisi bulunamadı.");
-          return;
-        }
-
-        const querySnapshot = await getDocs(
-          query(citiesRef, where("user", "==", usernameToMatch))
-        );
-
-        const citiesData = querySnapshot.docs.map((doc) => doc.data());
-        setCities((prev) => [...prev, ...citiesData]);
-      } catch (error) {
-        console.error("Hata oluştu:", error);
-      }
+    const fetchAllCities = async () => {
+      const q = query(citiesRef, where("user", "==", user));
+      const snapShot = await getDocs(q);
+      const result = [];
+      snapShot.forEach((doc) => {
+        result.push(doc.data()["data"]);
+      });
+      setCities(() => result);
     };
 
-    fetchCities();
+    fetchAllCities();
   }, []);
-
-  // Delete here
 
   async function getCity(id: string) {
     try {
