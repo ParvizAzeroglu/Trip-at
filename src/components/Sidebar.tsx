@@ -10,25 +10,6 @@ const Sidebar = () => {
   const sideContainerRef = useRef<HTMLDivElement>(null);
   const { active, setActive } = useCities();
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (active == true) return;
-      if (
-        sideContainerRef.current &&
-        !sideContainerRef.current.contains(event.target as Node) &&
-        sideButtonRef.current &&
-        !sideContainerRef.current.contains(event.target as Node)
-      ) {
-        setActive(false);
-      }
-    };
-
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [active]);
-
   const handleClick = () => {
     setActive((prev) => !prev);
   };

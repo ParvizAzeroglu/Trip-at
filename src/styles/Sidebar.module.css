@@ -10,7 +10,7 @@
 
 .toggle {
   position: absolute;
-  top: 30px;
+  top: 8rem;
   right: 0;
   transform: translateX(100%);
   background-color: var(--secondary-bg);
