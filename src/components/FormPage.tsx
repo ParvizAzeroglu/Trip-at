@@ -30,17 +30,17 @@ const FormPage = () => {
   const handleSaveEvent: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     const formData = {
-      cityName: cityNameRef.current?.value,
-      date: timeFormRef.current?.value,
-      notes: textareaFormRef.current?.value,
+      cityName: cityNameRef.current?.value ?? "",
+      date: timeFormRef.current?.value ?? "",
+      notes: textareaFormRef.current?.value ?? "",
     };
     const MergedData = {
       ...formData,
-      country: data?.countryName,
-      emoji: data?.countryCode,
+      country: data?.countryName ?? "",
+      emoji: data?.countryCode ?? "",
       position: {
-        lat: data?.latitude,
-        lng: data?.longitude,
+        lat: data?.latitude ?? 0,
+        lng: data?.longitude ?? 0,
       },
       id: getRandomNumber(),
     };
