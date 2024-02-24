@@ -1,4 +1,3 @@
-import React from "react";
 import Map from "../components/Map";
 import Sidebar from "../components/Sidebar";
 import styles from "../styles/AppPage.module.css";
