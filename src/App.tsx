@@ -10,12 +10,13 @@ import Pricing from "./pages/Pricing";
 import Product from "./pages/Product";
 import PageNotFound from "./pages/PageNotFound";
 import Login from "./pages/Login";
-import AppPage from "./pages/AppPage";
+// import AppPage from "./pages/AppPage";
 import CityList from "./components/CityList";
 import Countries from "./components/Countries";
 import City from "./components/City";
 import { CitiesProvider } from "./contexts/CitiesContext";
 import FormPage from "./components/FormPage";
+import PrivateRoutes from "./PrivateRoutes";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -25,7 +26,7 @@ const App = () => {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/product" element={<Product />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/app" element={<AppPage />}>
+        <Route path="/app" element={<PrivateRoutes />}>
           <Route index element={<Navigate replace to="cities" />} />
           <Route path="cities" element={<CityList />} />
           <Route path="cities/:id" element={<City />} />

@@ -54,7 +54,6 @@ const DetectPosition = ({
   const { setActive } = useCities();
   const map = useMapEvents({
     click(e) {
-      // console.log(e);
       setPosition([e.latlng.lat, e.latlng.lng]);
       setActive(() => true);
       navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);

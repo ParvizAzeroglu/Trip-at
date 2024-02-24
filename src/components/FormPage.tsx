@@ -45,7 +45,6 @@ const FormPage = () => {
       id: getRandomNumber(),
     };
     addCity(MergedData);
-    console.log(MergedData);
     navigate("/app/cities");
   };
 

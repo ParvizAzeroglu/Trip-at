@@ -1,11 +1,9 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase/firebase-config";
 import toast from "react-hot-toast";
-import Cookies from "universal-cookie";
 import styles from "../styles/LoginGoogle.module.css";
 import googleImg from "../assets/google.webp";
-
-const cookies = new Cookies();
+import { loginUser } from "../firebase/auth";
 
 const LoginGoogle = () => {
   const handleGoogle = async () => {
@@ -13,7 +11,7 @@ const LoginGoogle = () => {
     return signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user.uid;
-        cookies.set("auth-token", user);
+        loginUser(user);
         toast.success(
           "Registration Successful. In 3 seconds, you will be redirected to the app!"
         );

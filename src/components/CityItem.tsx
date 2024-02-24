@@ -24,7 +24,6 @@ const CityItem = ({ city }: CityItemProps) => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     deleteCity(String(city.id));
-    console.log(String(city.id));
   };
 
   return (
