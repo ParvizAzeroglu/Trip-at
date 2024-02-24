@@ -3,3 +3,5 @@ Merge PageNav and Offcanvas components
 clean code
 
 add try, catch
+
+if auth cookies don't exist. Then don't allow to login app 

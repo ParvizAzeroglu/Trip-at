@@ -11,11 +11,15 @@ const City = () => {
     if (id !== undefined) {
       getCity(id);
     }
-  }, [id]);
+  }, [id, getCity]);
 
   return (
     <div className={styles.container}>
-      <p>{currentCity.cityName}</p>
+      <h1>
+        {currentCity.cityName} <span>{currentCity.emoji}</span>
+      </h1>
+      <span>{currentCity.country}</span>
+      <p>{currentCity.notes}</p>
     </div>
   );
 };

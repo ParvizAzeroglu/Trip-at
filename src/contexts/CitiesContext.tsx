@@ -1,15 +1,17 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { City } from "../interfaces/City";
 import {
+  addDoc,
   collection,
-  doc,
-  getDoc,
+  deleteDoc,
   getDocs,
+  limit,
   query,
   where,
 } from "firebase/firestore";
 import { auth, db } from "../firebase/firebase-config";
 import Cookies from "universal-cookie";
+import toast from "react-hot-toast";
 
 const cookies = new Cookies();
 
@@ -22,6 +24,8 @@ interface ContextValueProps {
   getCity: (id: string) => Promise<void>;
   active: boolean;
   setActive: React.Dispatch<React.SetStateAction<boolean>>;
+  deleteCity: (id: string) => Promise<void>;
+  addCity: (data: City) => Promise<void>;
 }
 
 function CitiesProvider({ children }: { children: React.ReactNode }) {
@@ -34,49 +38,59 @@ function CitiesProvider({ children }: { children: React.ReactNode }) {
   // Delete here
 
   useEffect(() => {
-    const fetchAllCities = async () => {
-      const q = query(citiesRef, where("user", "==", user));
-      const snapShot = await getDocs(q);
-      const result = [];
-      snapShot.forEach((doc) => {
-        result.push(doc.data()["data"]);
-      });
-      setCities(() => result);
-    };
-
     fetchAllCities();
   }, []);
 
-  async function getCity(id: string) {
+  const fetchAllCities = async () => {
+    setIsLoading(true);
+    const q = query(citiesRef, where("user", "==", user));
+    const snapShot = await getDocs(q);
+    const result: City[] = [];
+    snapShot.forEach((doc) => {
+      result.push(doc.data()["data"]);
+    });
+    setCities(() => result);
+    setIsLoading(false);
+  };
+
+  const getCity = async (id: string) => {
     try {
-      setIsLoading(true);
-      const usernameToMatch = auth.currentUser?.displayName;
-
-      if (!usernameToMatch) {
-        console.log("Kullanıcı adı bilgisi bulunamadı.");
-        return;
-      }
-
-      const querySnapshot = await getDocs(
-        query(
-          citiesRef,
-          where("user", "==", usernameToMatch),
-          where("id", "==", Number(id))
-        )
-      );
-
-      if (querySnapshot.size > 0) {
-        const documentData = querySnapshot.docs[0].data();
-        console.log("Eşleşen Belge:", documentData);
-      } else {
-        console.log("Eşleşen belge bulunamadı.");
-      }
+      // setIsLoading(true);
+      const q = query(citiesRef, where("data.id", "==", Number(id)), limit(1));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        setCurrentCity(() => doc.data()["data"]);
+      });
     } catch (err) {
-      console.log("error", err);
-    } finally {
-      setIsLoading(false);
+      console.log(err);
     }
-  }
+  };
+
+  const deleteCity = async (id: string) => {
+    setCities((cities) =>
+      cities.filter((city) => {
+        return city.id != Number(id);
+      })
+    );
+    const q = query(citiesRef, where("data.id", "==", Number(id)), limit(1));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      deleteDoc(doc.ref);
+    });
+  };
+
+  const addCity = async (data: City) => {
+    try {
+      await addDoc(collection(db, "users"), {
+        user: auth.currentUser?.uid,
+        data,
+      });
+      setCities((cities) => [...cities, data]);
+      toast.success("data successfully added");
+    } catch (err) {
+      console.log("failed to add data ", err);
+    }
+  };
 
   return (
     <CitiesContext.Provider
@@ -87,6 +101,8 @@ function CitiesProvider({ children }: { children: React.ReactNode }) {
         getCity,
         active,
         setActive,
+        deleteCity,
+        addCity,
       }}
     >
       {children}

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/CityItem.module.css";
+import { useCities } from "../contexts/CitiesContext";
 
 interface CityItemProps {
   city: {
@@ -19,7 +20,13 @@ interface CityItemProps {
 // React.FC<CityItemProps>
 
 const CityItem = ({ city }: CityItemProps) => {
-  // console.log(city.position);
+  const { deleteCity } = useCities();
+  const handleClick = (e) => {
+    e.preventDefault();
+    deleteCity(String(city.id));
+    console.log(String(city.id));
+  };
+
   return (
     <li className={styles.container}>
       <Link
@@ -29,10 +36,14 @@ const CityItem = ({ city }: CityItemProps) => {
         <span className={styles.emoji}>{city.emoji}</span>
         <h4 className={styles["city-name"]}>{city.cityName}</h4>
         <p className={styles.time}>{city.date}</p>
-        <button className={styles.deleteBtn}>&times;</button>
+        <button className={styles.deleteBtn} onClick={handleClick}>
+          &times;
+        </button>
       </Link>
     </li>
   );
 };
 
 export default CityItem;
+
+//
