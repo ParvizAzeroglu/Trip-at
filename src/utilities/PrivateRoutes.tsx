@@ -1,8 +1,8 @@
 // PrivateRoute
 
 import { Navigate } from "react-router-dom";
-import { isUserLoggedIn } from "./firebase/auth";
-import AppPage from "./pages/AppPage";
+import { isUserLoggedIn } from "../firebase/auth";
+import AppPage from "../pages/AppPage";
 
 const PrivateRoutes = () => {
   const authToken = isUserLoggedIn();

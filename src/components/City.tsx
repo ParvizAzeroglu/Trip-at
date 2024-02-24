@@ -16,10 +16,10 @@ const City = () => {
   return (
     <div className={styles.container}>
       <h1>
-        {currentCity.cityName} <span>{currentCity.emoji}</span>
+        {currentCity?.cityName} <span>{currentCity?.emoji}</span>
       </h1>
-      <span>{currentCity.country}</span>
-      <p>{currentCity.notes}</p>
+      <span>{currentCity?.country}</span>
+      <p>{currentCity?.notes}</p>
     </div>
   );
 };

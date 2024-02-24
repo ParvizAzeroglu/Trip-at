@@ -16,7 +16,7 @@ import Countries from "./components/Countries";
 import City from "./components/City";
 import { CitiesProvider } from "./contexts/CitiesContext";
 import FormPage from "./components/FormPage";
-import PrivateRoutes from "./PrivateRoutes";
+import PrivateRoutes from "./utilities/PrivateRoutes";
 
 const App = () => {
   const router = createBrowserRouter(
