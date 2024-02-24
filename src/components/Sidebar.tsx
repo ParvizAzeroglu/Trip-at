@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import styles from "../styles/Sidebar.module.css";
 import { Outlet } from "react-router-dom";
 import AppNav from "./AppNav";
@@ -13,6 +13,7 @@ const Sidebar = () => {
   const handleClick = () => {
     setActive((prev) => !prev);
   };
+
   return (
     <div
       className={`${styles.sidebar} ${active ? "sidebar-active" : ""}`}

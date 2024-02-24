@@ -12,6 +12,7 @@ const CityList = () => {
   }
   // Add Message.tsx
   if (!cities.length) return <p>there is no data here</p>;
+
   return (
     <div className={styles.container}>
       <ul className={styles.cityList}>

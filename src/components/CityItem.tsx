@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/CityItem.module.css";
 import { useCities } from "../contexts/CitiesContext";
+import React from "react";
 
 interface CityItemProps {
   city: {
@@ -17,11 +18,10 @@ interface CityItemProps {
   };
 }
 
-// React.FC<CityItemProps>
-
 const CityItem = ({ city }: CityItemProps) => {
   const { deleteCity } = useCities();
-  const handleClick = (e) => {
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     deleteCity(String(city.id));
     console.log(String(city.id));

@@ -17,6 +17,7 @@ const Countries: React.FC = () => {
   if (isLoading) {
     <Spinner />;
   }
+
   if (!cities.length) {
     return <p>Empty</p>;
   }

@@ -33,9 +33,9 @@ function CitiesProvider({ children }: { children: React.ReactNode }) {
   const [cities, setCities] = useState<City[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [currentCity, setCurrentCity] = useState({});
+  // Firebase
   const citiesRef = collection(db, "users");
   const user = cookies.get("auth-token");
-  // Delete here
 
   useEffect(() => {
     fetchAllCities();
