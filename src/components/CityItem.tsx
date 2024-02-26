@@ -44,5 +44,3 @@ const CityItem = ({ city }: CityItemProps) => {
 };
 
 export default CityItem;
-
-//

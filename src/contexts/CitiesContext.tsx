@@ -117,6 +117,7 @@ function CitiesProvider({ children }: { children: React.ReactNode }) {
         result.push(doc.data()["data"]);
       });
 
+      console.log("Fetched all city");
       dispatch({ type: "cities/loaded", payload: result });
     } catch (err) {
       dispatch({
@@ -134,6 +135,7 @@ function CitiesProvider({ children }: { children: React.ReactNode }) {
       querySnapshot.forEach((doc) => {
         dispatch({ type: "city/loaded", payload: doc.data()["data"] });
       });
+      console.log("Get City");
     } catch (err) {
       dispatch({
         type: "rejected",
@@ -152,6 +154,7 @@ function CitiesProvider({ children }: { children: React.ReactNode }) {
       querySnapshot.forEach((doc) => {
         deleteDoc(doc.ref);
       });
+      console.log("Delete City");
     } catch (err) {
       dispatch({
         type: "rejected",
@@ -167,6 +170,7 @@ function CitiesProvider({ children }: { children: React.ReactNode }) {
         user: auth.currentUser?.uid,
         data,
       });
+      console.log("Added City");
 
       dispatch({ type: "city/created", payload: data });
       toast.success("data successfully added");

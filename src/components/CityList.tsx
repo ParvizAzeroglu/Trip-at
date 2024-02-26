@@ -3,6 +3,7 @@ import Spinner from "./Spinner";
 import CityItem from "./CityItem";
 import { useCities } from "../contexts/CitiesContext";
 import { City } from "../interfaces/City";
+import Message from "./Message";
 
 const CityList = () => {
   const { cities, isLoading } = useCities();
@@ -10,8 +11,13 @@ const CityList = () => {
   if (isLoading) {
     return <Spinner />;
   }
-  // Add Message.tsx
-  if (!cities.length) return <p>there is no data here</p>;
+
+  if (!cities.length)
+    return (
+      <div style={{ margin: "1.5rem", marginTop: "4rem" }}>
+        <Message type="warning">The Cities section is empty</Message>
+      </div>
+    );
 
   return (
     <div className={styles.container}>

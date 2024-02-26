@@ -15,11 +15,35 @@ const City = () => {
 
   return (
     <div className={styles.container}>
-      <h1>
-        {currentCity?.cityName} <span>{currentCity?.emoji}</span>
+      <h1 style={{ fontSize: "2.5rem", textAlign: "center" }}>
+        {currentCity?.cityName}
+        <span style={{ marginLeft: "2rem", fontSize: "2rem" }}>
+          {currentCity?.emoji}
+        </span>
       </h1>
-      <span>{currentCity?.country}</span>
-      <p>{currentCity?.notes}</p>
+      <span
+        style={{
+          fontSize: "1.75rem",
+          opacity: "0.8",
+          textAlign: "center",
+          display: "block",
+          margin: ".5rem",
+        }}
+      >
+        {currentCity?.country}
+      </span>
+      <p
+        className="text"
+        style={{
+          marginTop: "2rem",
+          display: "block",
+          backgroundColor: "var(--secondary-bg)",
+          padding: "0.3rem",
+          borderRadius: "10px",
+        }}
+      >
+        {currentCity?.notes}
+      </p>
     </div>
   );
 };

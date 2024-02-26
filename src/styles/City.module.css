@@ -1,2 +1,6 @@
 .container {
+  background-color: var(--background-color);
+  margin: 1rem;
+  border-radius: 0.7rem;
+  padding: 1rem;
 }

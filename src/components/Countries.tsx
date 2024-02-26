@@ -3,6 +3,7 @@ import styles from "../styles/Countries.module.css";
 import Spinner from "./Spinner";
 import { useCities } from "../contexts/CitiesContext";
 import { City } from "../interfaces/City";
+import Message from "./Message";
 
 const Countries: React.FC = () => {
   const { cities, isLoading } = useCities();
@@ -19,7 +20,11 @@ const Countries: React.FC = () => {
   }
 
   if (!cities.length) {
-    return <p>Empty</p>;
+    return (
+      <div style={{ margin: "1.5rem", marginTop: "4rem" }}>
+        <Message type="warning">The Countries section is empty</Message>
+      </div>
+    );
   }
 
   return (
