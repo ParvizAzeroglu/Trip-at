@@ -1,5 +1,6 @@
 import React, {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useReducer,
@@ -127,22 +128,32 @@ function CitiesProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const getCity = async (id: string) => {
-    dispatch({ type: "loading" });
-    try {
-      const q = query(citiesRef, where("data.id", "==", Number(id)), limit(1));
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        dispatch({ type: "city/loaded", payload: doc.data()["data"] });
-      });
-      console.log("Get City");
-    } catch (err) {
-      dispatch({
-        type: "rejected",
-        payload: "There was an error loading single data...",
-      });
-    }
-  };
+  const getCity = useCallback(
+    async (id: string) => {
+      if (Number(id) === currentCity?.id) return;
+
+      dispatch({ type: "loading" });
+      try {
+        const q = query(
+          citiesRef,
+          where("data.id", "==", Number(id)),
+          limit(1)
+        );
+        const querySnapshot = await getDocs(q);
+        if (!querySnapshot.empty) {
+          const doc = querySnapshot.docs[0];
+          dispatch({ type: "city/loaded", payload: doc.data()["data"] });
+        }
+        console.log("Get City");
+      } catch (err) {
+        dispatch({
+          type: "rejected",
+          payload: "There was an error loading single data...",
+        });
+      }
+    },
+    [citiesRef, currentCity?.id]
+  );
 
   const deleteCity = async (id: string) => {
     dispatch({ type: "loading" });
