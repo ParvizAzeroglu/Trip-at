@@ -5,18 +5,26 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import Homepage from "./pages/Homepage";
-import Pricing from "./pages/Pricing";
-import Product from "./pages/Product";
-import PageNotFound from "./pages/PageNotFound";
-import Login from "./pages/Login";
-// import AppPage from "./pages/AppPage";
+// import Homepage from "./pages/Homepage";
+// import Pricing from "./pages/Pricing";
+// import Product from "./pages/Product";
+// import PageNotFound from "./pages/PageNotFound";
+// import Login from "./pages/Login";
+// import PrivateRoutes from "./utilities/PrivateRoutes";
 import CityList from "./components/CityList";
 import Countries from "./components/Countries";
 import City from "./components/City";
 import { CitiesProvider } from "./contexts/CitiesContext";
 import FormPage from "./components/FormPage";
-import PrivateRoutes from "./utilities/PrivateRoutes";
+import { Suspense, lazy } from "react";
+import SpinnerFullPage from "./pages/SpinnerFullPage";
+
+const PrivateRoutes = lazy(() => import("./utilities/PrivateRoutes"));
+const Homepage = lazy(() => import("./pages/Homepage"));
+const Pricing = lazy(() => import("./pages/Pricing"));
+const Product = lazy(() => import("./pages/Product"));
+const PageNotFound = lazy(() => import("./pages/PageNotFound"));
+const Login = lazy(() => import("./pages/Login"));
 
 const App = () => {
   const router = createBrowserRouter(
@@ -40,7 +48,9 @@ const App = () => {
 
   return (
     <CitiesProvider>
-      <RouterProvider router={router} />
+      <Suspense fallback={<SpinnerFullPage />}>
+        <RouterProvider router={router} />
+      </Suspense>
     </CitiesProvider>
   );
 };

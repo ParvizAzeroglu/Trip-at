@@ -3,3 +3,8 @@ Merge PageNav and Offcanvas components
 clean code
 
 // @ts-expect-error: Lorem ipsum dolor 
+
+before optimization :
+// dist/assets/index-J5RJNWnQ.css            8.87 kB │ gzip:   2.38 kB
+// dist/assets/index-fDz53dAN.js           824.52 kB │ gzip: 225.33 kB
+600kb
